@@ -1,0 +1,38 @@
+- name: Setup Kubernetes with Kind
+  hosts: vm
+  become: yes
+
+  tasks:
+
+    - name: Copy kind config
+      copy:
+        src: ./kind-config.yaml
+        dest: /home/ubuntu/kind-config.yaml
+
+    
+
+    - name: Check existing clusters
+      shell: kind get clusters
+      register: kind_clusters
+      ignore_errors: yes
+
+    - name: Create kind cluster
+      shell: kind create cluster --config kind-config.yaml
+      args:
+        chdir: /home/ubuntu/
+      when: "'kind' not in kind_clusters.stdout"
+
+    - name: Export kubeconfig
+      command: kind export kubeconfig --name kind
+      become: yes
+      become_user: ubuntu
+
+    - name: Copy nginx-ingress 
+      copy:
+        src: ./nginx-ingress.yaml
+        dest: /home/ubuntu/nginx-ingress.yaml
+    
+    - name: install nginx ingrees on kind cluster
+      shell: kubectl apply -f nginx-ingress.yaml
+      args:
+        chdir: /home/ubuntu/

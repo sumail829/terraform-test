@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: sumail829/nestly-backend
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+
+        ports:
+        - containerPort: 7000
+        env: 
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: nestly-config
+              key: PORT
+        - name: JWT_USERTOKEN
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: JWT_USERTOKEN
+
+        - name: MONGODB_URL
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: MONGODB_URL
+              
+        - name: FRONTEND_URL
+          valueFrom:
+            configMapKeyRef:
+              name: nestly-config
+              key: FRONTEND_URL
+        

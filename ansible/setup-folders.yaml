@@ -1,0 +1,36 @@
+- name: Setup Kubernetes with Kind
+  hosts: vm
+  become: yes
+
+  tasks:
+
+    - name: Create folders
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /home/ubuntu/backend
+        - /home/ubuntu/frontend
+        - /home/ubuntu/mongodb
+
+    - name: Copy backend YAMLs
+      copy:
+        src: "{{ item }}"
+        dest: /home/ubuntu/backend/
+      with_fileglob:
+        - "k8s/backend/*.yaml"
+
+    - name: Copy frontend YAMLs
+      copy:
+        src: "{{ item }}"
+        dest: /home/ubuntu/frontend/
+      with_fileglob:
+        - "k8s/frontend/*.yaml"
+
+    - name: Copy mongo YAMLs
+      copy:
+        src: "{{ item }}"
+        dest: /home/ubuntu/mongodb/
+      with_fileglob:
+        - "k8s/mongo/*.yaml"

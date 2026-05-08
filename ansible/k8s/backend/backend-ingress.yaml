@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-backend
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "samir-api.deepak-shahi.com.np"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: backend
+            port:
+              number: 7000

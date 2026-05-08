@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nestly-config
+data:
+  PORT: "7000"
+  FRONTEND_URL: "https://samir.deepak-shahi.com.np"
+  NEXT_PUBLIC_API_URL: "https://samir.deepak-shahi.com.np/api"
+  NODE_ENV: "production"
