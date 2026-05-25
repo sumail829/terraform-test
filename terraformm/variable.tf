@@ -3,3 +3,7 @@ variable "CLOUDFLARE_API_TOKEN" {
   type        = string
   sensitive   = true
 }
+
+variable "db_password" {
+  sensitive = true
+}

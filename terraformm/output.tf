@@ -9,3 +9,8 @@ ${aws_instance.suman.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file
 EOT
   filename = "${path.module}/../ansible/inventory/inventory.ini"
 }
+
+
+output "cloudfront_url" {
+  value = aws_cloudfront_distribution.ec2_cdn.domain_name
+}
