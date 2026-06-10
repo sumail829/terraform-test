@@ -41,3 +41,50 @@
 
     - name: Wait for frontend rollout
       command: kubectl rollout status deployment frontend-deployment
+
+
+
+
+# - name: deploy kubernetes resources
+#   hosts: vm
+#   become: yes
+
+#   tasks:
+#     - name: Apply mongo-secrets
+#       command:  kubectl apply -f /home/siddharthadhakal54/mongo-secret.yaml
+      
+#     - name: Apply secrets
+#       command: kubectl apply -f /home/siddharthadhakal54/secrets.yaml
+
+#     - name: Apply configmap
+#       command: kubectl apply -f /home/siddharthadhakal54/configmap.yaml
+
+#     - name: Apply MongoDB resources
+#       command: kubectl apply -f .
+#       args:
+#         chdir: /home/siddharthadhakal54/mongodb
+
+#     - name: Wait for MongoDB rollout
+#       command: kubectl rollout status statefulset mongo
+
+#     - name: Apply backend resources
+#       command: kubectl apply -f .
+#       args:
+#         chdir: /home/siddharthadhakal54/backend
+
+#     - name: Restart backend deployment
+#       command: kubectl rollout restart deployment backend-deployment
+
+#     - name: Wait for backend rollout
+#       command: kubectl rollout status deployment backend-deployment
+
+#     - name: Apply frontend resources
+#       command: kubectl apply -f .
+#       args:
+#         chdir: /home/siddharthadhakal54/frontend
+
+#     - name: Restart frontend deployment
+#       command: kubectl rollout restart deployment frontend-deployment
+
+#     - name: Wait for frontend rollout
+#       command: kubectl rollout status deployment frontend-deployment

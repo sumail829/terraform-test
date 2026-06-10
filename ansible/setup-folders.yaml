@@ -34,3 +34,57 @@
         dest: /home/ubuntu/mongodb/
       with_fileglob:
         - "k8s/mongo/*.yaml"
+
+    
+
+    - name: Copy  secret
+      copy:
+        src: k8s/secrets.yaml
+        dest: /home/ubuntu/secret.yaml
+
+    - name: Copy mongo secret
+      copy:
+        src: k8s/mongo-secret.yaml
+        dest: /home/ubuntu/mongo-secret.yaml
+
+    - name: copy  configmap
+      copy:
+        src: k8s/configmap.yaml
+        dest: /home/ubuntu/configmap.yaml
+
+# - name: Setup Kubernetes with Kind
+#   hosts: vm
+#   become: yes
+
+#   tasks:
+
+#     - name: Create folders
+#       file:
+#         path: "{{ item }}"
+#         state: directory
+#         mode: '0755'
+#       loop:
+#         - /home/siddharthadhakal54/backend
+#         - /home/siddharthadhakal54/frontend
+#         - /home/siddharthadhakal54/mongodb
+
+#     - name: Copy backend YAMLs
+#       copy:
+#         src: "{{ item }}"
+#         dest: /home/siddharthadhakal54/backend/
+#       with_fileglob:
+#         - "k8s/backend/*.yaml"
+
+#     - name: Copy frontend YAMLs
+#       copy:
+#         src: "{{ item }}"
+#         dest: /home/siddharthadhakal54/frontend/
+#       with_fileglob:
+#         - "k8s/frontend/*.yaml"
+
+#     - name: Copy mongo YAMLs
+#       copy:
+#         src: "{{ item }}"
+#         dest: /home/siddharthadhakal54/mongodb/
+#       with_fileglob:
+#         - "k8s/mongo/*.yaml"

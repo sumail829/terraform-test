@@ -1,45 +1,47 @@
-resource "aws_cloudfront_distribution" "ec2_cdn" {
+# resource "aws_cloudfront_distribution" "ec2_cdn" {
 
-  enabled = true
+#   enabled = true
 
-  origin {
-    domain_name = aws_instance.suman.public_dns
-    origin_id   = "ec2-origin"
+#     depends_on = [aws_instance.suman]
 
-    custom_origin_config {
-      http_port              = 80
-      https_port             = 443
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1.2"]
-    }
-  }
+#   origin {
+#     domain_name = aws_instance.suman.public_ip
+#     origin_id   = "ec2-origin"
 
-  default_cache_behavior {
+#     custom_origin_config {
+#       http_port              = 80
+#       https_port             = 443
+#       origin_protocol_policy = "http-only"
+#       origin_ssl_protocols   = ["TLSv1.2"]
+#     }
+#   }
 
-    target_origin_id = "ec2-origin"
+#   default_cache_behavior {
 
-    allowed_methods = ["GET", "HEAD", "OPTIONS"]
+#     target_origin_id = "ec2-origin"
 
-    cached_methods = ["GET", "HEAD"]
+#     allowed_methods = ["GET", "HEAD", "OPTIONS"]
 
-    viewer_protocol_policy = "redirect-to-https"
+#     cached_methods = ["GET", "HEAD"]
 
-    forwarded_values {
-      query_string = true
+#     viewer_protocol_policy = "redirect-to-https"
 
-      cookies {
-        forward = "all"
-      }
-    }
-  }
+#     forwarded_values {
+#       query_string = true
 
-  restrictions {
-    geo_restriction {
-      restriction_type = "none"
-    }
-  }
+#       cookies {
+#         forward = "all"
+#       }
+#     }
+#   }
 
-  viewer_certificate {
-    cloudfront_default_certificate = true
-  }
-}
+#   restrictions {
+#     geo_restriction {
+#       restriction_type = "none"
+#     }
+#   }
+
+#   viewer_certificate {
+#     cloudfront_default_certificate = true
+#   }
+# }

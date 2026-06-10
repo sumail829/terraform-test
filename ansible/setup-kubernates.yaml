@@ -36,3 +36,42 @@
       shell: kubectl apply -f nginx-ingress.yaml
       args:
         chdir: /home/ubuntu/
+
+# - name: Setup Kubernetes with Kind
+#   hosts: vm
+#   become: yes
+
+#   tasks:
+
+#     - name: Copy kind config
+#       copy:
+#         src: ./kind-config.yaml
+#         dest: /home/siddharthadhakal54/kind-config.yaml
+
+    
+
+#     - name: Check existing clusters
+#       shell: kind get clusters
+#       register: kind_clusters
+#       ignore_errors: yes
+
+#     - name: Create kind cluster
+#       shell: kind create cluster --config kind-config.yaml
+#       args:
+#         chdir: /home/siddharthadhakal54/
+#       when: "'kind' not in kind_clusters.stdout"
+
+#     - name: Export kubeconfig
+#       command: kind export kubeconfig --name kind
+#       become: yes
+#       become_user: siddharthadhakal54
+
+#     - name: Copy nginx-ingress 
+#       copy:
+#         src: ./nginx-ingress.yaml
+#         dest: /home/siddharthadhakal54/nginx-ingress.yaml
+    
+#     - name: install nginx ingrees on kind cluster
+#       shell: kubectl apply -f nginx-ingress.yaml
+#       args:
+#         chdir: /home/siddharthadhakal54/
