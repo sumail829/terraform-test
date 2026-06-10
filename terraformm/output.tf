@@ -11,6 +11,6 @@ EOT
 }
 
 
-output "cloudfront_url" {
-  value = aws_cloudfront_distribution.ec2_cdn.domain_name
-}
+# output "cloudfront_url" {
+#   value = aws_cloudfront_distribution.ec2_cdn.domain_name
+# }
