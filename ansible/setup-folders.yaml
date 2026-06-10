@@ -40,7 +40,7 @@
     - name: Copy  secret
       copy:
         src: k8s/secrets.yaml
-        dest: /home/ubuntu/secret.yaml
+        dest: /home/ubuntu/secrets.yaml
 
     - name: Copy mongo secret
       copy:
